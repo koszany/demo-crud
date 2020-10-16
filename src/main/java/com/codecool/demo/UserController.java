@@ -57,9 +57,6 @@ public class UserController {
 
     @PostMapping("/update/{id}")
     String updateUser (@PathVariable("id") long id, @Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "update-user";
-        }
         userRepository.save(user);
         model.addAttribute("users", userRepository.findAll());
         return "redirect:/index";
